@@ -2,11 +2,7 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
-app.get('/', function (req, res) {
-    return res.json(200, {
-        message : "Home Page"
-    })
-});
+app.use('/', require('./routes/index'));
 
 app.listen(port, function(err){
     if(err){
