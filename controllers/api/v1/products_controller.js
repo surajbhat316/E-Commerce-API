@@ -2,7 +2,7 @@ const Product = require('../../../models/products');
 
 module.exports.createProduct = async function(req,res){
     try{
-        let product = await Product.create({name : req.body.name, quantity : req.body.quantity});
+        let product = await Product.create({name : req.body.product.name, quantity : req.body.product.quantity});
         return res.status(200).json({
             data : {
                 product: {
@@ -22,9 +22,21 @@ module.exports.createProduct = async function(req,res){
 module.exports.getProducts = async function(req, res){
     try{
         let products = await Product.find({});
+        let newProducts = [];
+        for(let product of products){
+            let productObj = {
+                id: product._id,
+                name: product.name,
+                quantity : product.quantity
+            }
+            newProducts.push(productObj);
+            productObj = {};
+        }
         if(products){
             return res.status(200).json({
-                products: products
+                data:{
+                    products: newProducts,
+                }
             });
         }
     }
@@ -54,9 +66,6 @@ module.exports.deleteProduct = async function(req, res){
 
 
 module.exports.updateQuantity = async function(req, res){
-
-    console.log(req.params);
-    console.log(typeof req.query.number);
     try{
         let product = await Product.findById(req.params.id);
         product.quantity = product.quantity + parseInt(req.query.number);
