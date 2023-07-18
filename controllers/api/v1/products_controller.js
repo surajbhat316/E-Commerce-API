@@ -1,5 +1,6 @@
 const Product = require('../../../models/products');
 
+//controller action for create product
 module.exports.createProduct = async function(req,res){
     try{
         let product = await Product.create({name : req.body.product.name, quantity : req.body.product.quantity});
@@ -19,6 +20,7 @@ module.exports.createProduct = async function(req,res){
     }
 }
 
+//controller action for getting all the products
 module.exports.getProducts = async function(req, res){
     try{
         let products = await Product.find({});
@@ -47,6 +49,7 @@ module.exports.getProducts = async function(req, res){
     }
 }
 
+//controller action for deleting a product
 module.exports.deleteProduct = async function(req, res){
 
     try{
@@ -64,7 +67,7 @@ module.exports.deleteProduct = async function(req, res){
     }
 }
 
-
+//controller action for updating a products quantity
 module.exports.updateQuantity = async function(req, res){
     try{
         let product = await Product.findById(req.params.id);
