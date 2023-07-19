@@ -1,5 +1,10 @@
 <p>If you are trying to run it on your local machine then follow the following steps</p>
-<p>Step ! : npm install</p>
+<p>Step 1 : <p>Download the code as a zip file</p>
+          <p>Extract the files and open the folder in vs code</p>
+          <p>npm install</p>
+          <p>Comment line 5 and uncomment line number 4 in mongoose.js</p>
+          <p>ie use : mongoose.connect('mongodb://127.0.0.1:27017/ecommerceAPI');</p>
+          <p>and comment out mongoose.connect(process.env.MONGO_URL);</p>
 
 <p>Step 2 : npm start to start the application on port 8000</p>
 
